@@ -1,0 +1,266 @@
+﻿--- System Information ---
+
+
+
+OsName                     : Microsoft Windows 11 Home Single Language
+OsVersion                  : 10.0.26100
+OsHardwareAbstractionLayer : 10.0.26100.1
+WindowsProductName         : Windows 10 Home Single Language
+WindowsBuildLabEx          : 26100.1.amd64fre.ge_release.240331-1435
+CsManufacturer             : HP
+CsModel                    : Victus by HP Gaming Laptop 15-fa1xxx
+CsTotalPhysicalMemory      : 16802910208
+CsNumberOfProcessors       : 1
+BiosManufacturer           : AMI
+BiosVersion                : HPQOEM - 1072009
+BiosReleaseDate            : 21-08-2024 05:30:00
+
+
+
+
+
+--- CPU Information ---
+
+
+
+Name                      : 12th Gen Intel(R) Core(TM) i5-12450H
+NumberOfCores             : 8
+NumberOfLogicalProcessors : 12
+MaxClockSpeed             : 2000
+L2CacheSize               : 7168
+L3CacheSize               : 12288
+
+
+
+
+
+--- RAM Information ---
+
+
+BankLabel   Capacity ConfiguredClockSpeed DeviceLocator           FormFactor Manufacturer     PartNumber           Seri
+                                                                                                                   alNu
+                                                                                                                   mber
+---------   -------- -------------------- -------------           ---------- ------------     ----------           ----
+BANK 0    8589934592                 3200 Bottom - Slot 1 (left)          12 Nanya Technology NT8GA64D88CX3S-JR    8...
+BANK 0    8589934592                 3200 Bottom - Slot 2 (right)         12 Nanya Technology NT8GA64D88CX3S-JR    8...
+
+
+
+
+--- Disk Drive Information ---
+
+
+Caption                            Size MediaType             Model                      SerialNumber        
+-------                            ---- ---------             -----                      ------------        
+SAMSUNG MZVL4512HBLU-00BH1 512105932800 Fixed hard disk media SAMSUNG MZVL4512HBLU-00BH1 0025_38E1_41B1_FC9F.
+
+
+
+
+
+DeviceID VolumeName FileSystem         Size   FreeSpace
+-------- ---------- ----------         ----   ---------
+C:       Windows    NTFS       157859966976 29238947840
+D:       New Volume NTFS       163576803328 48131850240
+E:       New Volume NTFS       104857595904 92508975104
+F:       New Volume NTFS        83885027328 83681923072
+
+
+
+
+--- Network Adapter Details ---
+
+
+Name                          InterfaceDescription                       MacAddress        Status       LinkSpeed
+----                          --------------------                       ----------        ------       ---------
+VMware Network Adapter VMnet8 VMware Virtual Ethernet Adapter for VMnet8 00-50-56-C0-00-08 Up           100 Mbps 
+Wi-Fi                         Intel(R) Wi-Fi 6E AX211 160MHz             64-32-A8-E6-0B-8B Up           130 Mbps 
+VMware Network Adapter VMnet1 VMware Virtual Ethernet Adapter for VMnet1 00-50-56-C0-00-01 Up           100 Mbps 
+Ethernet                      Realtek Gaming GbE Family Controller       28-C5-C8-58-05-3C Disconnected 0 bps    
+
+
+
+
+--- IP Configuration (Detailed) ---
+
+Adapter Name       : VMware Network Adapter VMnet8
+InterfaceAlias     : VMware Network Adapter VMnet8
+IPv4Address        : 192.168.240.1
+IPv4DefaultGateway : 
+DNSServer          : fec0:0:0:ffff::1, fec0:0:0:ffff::2, fec0:0:0:ffff::3
+MacAddress         : 00-50-56-C0-00-08
+
+Adapter Name       : Wi-Fi
+InterfaceAlias     : Wi-Fi
+IPv4Address        : 10.120.9.78
+IPv4DefaultGateway : 10.120.8.1
+DNSServer          : 10.124.4.18, 10.124.4.23, 8.8.8.8
+MacAddress         : 64-32-A8-E6-0B-8B
+
+Adapter Name       : VMware Network Adapter VMnet1
+InterfaceAlias     : VMware Network Adapter VMnet1
+IPv4Address        : 192.168.198.1
+IPv4DefaultGateway : 
+DNSServer          : fec0:0:0:ffff::1, fec0:0:0:ffff::2, fec0:0:0:ffff::3
+MacAddress         : 00-50-56-C0-00-01
+
+Adapter Name       : Ethernet
+InterfaceAlias     : Ethernet
+IPv4Address        : 169.254.18.226
+IPv4DefaultGateway : 
+DNSServer          : fec0:0:0:ffff::1, fec0:0:0:ffff::2, fec0:0:0:ffff::3
+MacAddress         : 28-C5-C8-58-05-3C
+
+--- Active Network Connections (Open Ports from Host Perspective) ---
+
+
+LocalAddress  LocalPort OwningProcess  State
+------------  --------- -------------  -----
+::                  135          1672 Listen
+0.0.0.0             135          1672 Listen
+10.120.9.78         139             4 Listen
+192.168.240.1       139             4 Listen
+192.168.198.1       139             4 Listen
+::                  445             4 Listen
+0.0.0.0             903          6556 Listen
+0.0.0.0             913          6556 Listen
+0.0.0.0            5040         10064 Listen
+::                 7680         18672 Listen
+127.0.0.1         19293         13148 Listen
+127.0.0.1         19294         13148 Listen
+127.0.0.1         27015         14384 Listen
+0.0.0.0           27036         16216 Listen
+127.0.0.1         27060         16216 Listen
+127.0.0.1         49253         10032 Listen
+0.0.0.0           49664          1288 Listen
+::                49664          1288 Listen
+::                49665          1184 Listen
+0.0.0.0           49665          1184 Listen
+::                49666          2076 Listen
+0.0.0.0           49666          2076 Listen
+::                49667          3320 Listen
+0.0.0.0           49667          3320 Listen
+0.0.0.0           49672          5200 Listen
+::                49672          5200 Listen
+::1               49673          5752 Listen
+0.0.0.0           49682          1260 Listen
+::                49682          1260 Listen
+127.0.0.1         52260         16216 Listen
+127.0.0.1         52262         16216 Listen
+
+
+
+
+
+LocalAddress LocalPort RemoteAddress   RemotePort OwningProcess       State
+------------ --------- -------------   ---------- -------------       -----
+10.120.9.78      56018 8.8.8.8                 53             0    TimeWait
+10.120.9.78      56020 8.8.8.8                443             0    TimeWait
+10.120.9.78      56031 8.8.8.8                 53             0    TimeWait
+10.120.9.78      56017 8.8.8.8                 53             0    TimeWait
+10.120.9.78      56026 150.171.70.254         443             0    TimeWait
+10.120.9.78      56027 204.79.197.222         443             0    TimeWait
+10.120.9.78      56024 52.123.129.254         443             0    TimeWait
+10.120.9.78      56025 150.171.84.254         443             0    TimeWait
+10.120.9.78      56039 10.120.9.215          7680             0    TimeWait
+10.120.9.78       7680 10.120.10.171        58225             0    TimeWait
+10.120.9.78       7680 10.120.10.61         59678             0    TimeWait
+10.120.9.78       7680 10.115.35.209        62032             0    TimeWait
+10.120.9.78      56048 10.120.9.108          7680             0    TimeWait
+10.120.9.78      56032 8.8.8.8                 53             0    TimeWait
+127.0.0.1        49678 127.0.0.1            49679          1612 Established
+127.0.0.1        49679 127.0.0.1            49678          1612 Established
+0.0.0.0          49679 0.0.0.0                  0          1612       Bound
+127.0.0.1        49680 127.0.0.1            49681          3180 Established
+0.0.0.0          49681 0.0.0.0                  0          3180       Bound
+127.0.0.1        49681 127.0.0.1            49680          3180 Established
+0.0.0.0          49402 0.0.0.0                  0          4596       Bound
+127.0.0.1        65509 127.0.0.1            52260          5148 Established
+127.0.0.1        65508 127.0.0.1            52262          5148 Established
+0.0.0.0          65508 0.0.0.0                  0          5148       Bound
+0.0.0.0          65509 0.0.0.0                  0          5148       Bound
+127.0.0.1        50070 127.0.0.1            50069          6556 Established
+0.0.0.0          50070 0.0.0.0                  0          6556       Bound
+127.0.0.1        50069 127.0.0.1            50070          6556 Established
+10.120.9.78      51652 4.213.25.242           443          6736 Established
+0.0.0.0          51652 0.0.0.0                  0          6736       Bound
+::               49262 ::                       0          7560       Bound
+10.120.9.78      56042 23.48.244.32           443         11280 Established
+10.120.9.78      56043 23.48.244.32           443         11280   CloseWait
+10.120.9.78      56052 204.79.197.222         443         11280 Established
+10.120.9.78      56041 8.8.8.8                443         11280 Established
+10.120.9.78      56051 13.107.18.254          443         11280 Established
+10.120.9.78      56045 23.201.221.195         443         11280 Established
+10.120.9.78      56046 20.189.173.14          443         11280 Established
+10.120.9.78      56050 150.171.22.254         443         11280 Established
+10.120.9.78      56044 23.201.220.10          443         11280    FinWait2
+0.0.0.0          56049 0.0.0.0                  0         11280       Bound
+0.0.0.0          56050 0.0.0.0                  0         11280       Bound
+0.0.0.0          56051 0.0.0.0                  0         11280       Bound
+0.0.0.0          56046 0.0.0.0                  0         11280       Bound
+0.0.0.0          56043 0.0.0.0                  0         11280       Bound
+0.0.0.0          56042 0.0.0.0                  0         11280       Bound
+0.0.0.0          56041 0.0.0.0                  0         11280       Bound
+10.120.9.78      56049 204.79.197.254         443         11280 Established
+0.0.0.0          56052 0.0.0.0                  0         11280       Bound
+0.0.0.0          56045 0.0.0.0                  0         11280       Bound
+0.0.0.0          56047 0.0.0.0                  0         12496       Bound
+10.120.9.78      56016 142.250.70.78          443         12496 Established
+10.120.9.78      55947 74.125.24.188          443         12496 Established
+10.120.9.78      55986 142.250.207.174        443         12496 Established
+10.120.9.78      56002 142.250.70.78          443         12496 Established
+10.120.9.78      55980 142.250.192.42         443         12496 Established
+10.120.9.78      56019 142.251.222.78         443         12496 Established
+0.0.0.0          55980 0.0.0.0                  0         12496       Bound
+0.0.0.0          55986 0.0.0.0                  0         12496       Bound
+10.120.9.78      56047 142.250.192.100        443         12496   CloseWait
+0.0.0.0          55947 0.0.0.0                  0         12496       Bound
+0.0.0.0          56016 0.0.0.0                  0         12496       Bound
+0.0.0.0          56019 0.0.0.0                  0         12496       Bound
+0.0.0.0          56002 0.0.0.0                  0         12496       Bound
+10.120.9.78      55764 31.13.79.54            443         14480 Established
+0.0.0.0          55764 0.0.0.0                  0         14480       Bound
+::1              49354 ::1                  49355         16120 Established
+::1              49355 ::1                  49354         16120 Established
+::               49355 ::                       0         16120       Bound
+10.120.9.78      50947 155.133.224.23         443         16216 Established
+127.0.0.1        52260 127.0.0.1            65509         16216 Established
+127.0.0.1        52262 127.0.0.1            65508         16216 Established
+0.0.0.0          50947 0.0.0.0                  0         16216       Bound
+10.120.9.78       7680 10.120.11.3          52404         18672 Established
+10.120.9.78       7680 10.120.10.171        55841         18672 Established
+10.120.9.78       7680 10.120.9.115         62729         18672 Established
+10.120.9.78       7680 10.120.9.164         54225         18672 Established
+10.120.9.78       7680 10.120.8.162         61743         18672 Established
+10.120.9.78       7680 10.120.10.61         59465         18672 Established
+::               56054 ::                       0         18672       Bound
+10.120.9.78      59706 10.120.11.0           7680         18672 Established
+::               56053 ::                       0         18672       Bound
+::               55843 ::                       0         18672       Bound
+10.120.9.78      55843 10.120.9.132          7680         18672 Established
+::               59706 ::                       0         18672       Bound
+10.120.9.78      56054 10.120.8.215          7680         18672     SynSent
+10.120.9.78      56053 10.120.9.118          7680         18672     SynSent
+0.0.0.0          52256 0.0.0.0                  0         20484       Bound
+0.0.0.0          49276 0.0.0.0                  0         22272       Bound
+0.0.0.0          49279 0.0.0.0                  0         22272       Bound
+
+
+
+
+--- Antivirus Status (Windows Defender) ---
+
+
+
+AMProductVersion          : 4.18.25050.5
+AMServiceVersion          : 4.18.25050.5
+AntivirusSignatureVersion : 1.431.682.0
+AntivirusEnabled          : True
+RealTimeProtectionEnabled : True
+ProductStatus             : 524288
+
+
+
+
+
+--- Script Completed ---

@@ -1,0 +1,119 @@
+﻿"Hostname","Timestamp","System_Information","CPU_Information","RAM_Information","Disk_Drive_Information","Logical_Volume_Information","Network_Adapter_Summary","IP_Configuration_Detailed","Active_Listeners","Established_Connections","Antivirus_Status"
+"MOULIKPC10","20250717-161806","OsName                     : Microsoft Windows 11 Home Single Language
+OsVersion                  : 10.0.26100
+OsHardwareAbstractionLayer : 10.0.26100.1
+WindowsProductName         : Windows 10 Home Single Language
+WindowsBuildLabEx          : 26100.1.amd64fre.ge_release.240331-1435
+CsManufacturer             : LENOVO
+CsModel                    : 82R1
+CsTotalPhysicalMemory      : 6373715968
+CsNumberOfProcessors       : 1
+BiosManufacturer           : LENOVO
+BiosVersion                : LENOVO - 1
+BiosReleaseDate            : 08-03-2022 05:30:00","Name                      : AMD Ryzen 5 3500U with Radeon Vega Mobile Gfx  
+NumberOfCores             : 4
+NumberOfLogicalProcessors : 8
+MaxClockSpeed             : 2100
+L2CacheSize               : 2048
+L3CacheSize               : 4096","BankLabel      Capacity ConfiguredClockSpeed DeviceLocator FormFactor Manufacturer PartNumber           SerialNumber
+---------      -------- -------------------- ------------- ---------- ------------ ----------           ------------
+P0 CHANNEL B 8589934592                 2400 DIMM 0                12 Hynix        HMAA1GS6CJR6N-XN     2687D09E","Caption                      Size MediaType             Model                SerialNumber        
+-------                      ---- ---------             -----                ------------        
+Micron MTFDHBA512QFD 512105932800 Fixed hard disk media Micron MTFDHBA512QFD 00A0_7501_3658_139E.","DeviceID VolumeName  FileSystem         Size    FreeSpace
+-------- ----------  ----------         ----    ---------
+C:       Windows-SSD NTFS       509722226688 271097126912","Name                         InterfaceDescription                           MacAddress        Status       LinkSpeed
+----                         --------------------                           ----------        ------       ---------
+Bluetooth Network Connection Bluetooth Device (Personal Area Network)       3C-55-76-60-0B-6A Disconnected 3 Mbps   
+Ethernet 3                   VirtualBox Host-Only Ethernet Adapter          0A-00-27-00-00-05 Up           1 Gbps   
+Wi-Fi                        Realtek 8822CE Wireless LAN 802.11ac PCI-E NIC 3C-55-76-60-0B-43 Up           72.2 Mbps","Adapter Name       : Bluetooth Network Connection
+InterfaceAlias     : Bluetooth Network Connection
+IPv4Address        : 169.254.104.61
+IPv4DefaultGateway : 
+DNSServer          : fec0:0:0:ffff::1, fec0:0:0:ffff::2, fec0:0:0:ffff::3
+MacAddress         : 3C-55-76-60-0B-6A
+
+Adapter Name       : Ethernet 3
+InterfaceAlias     : Ethernet 3
+IPv4Address        : 192.168.56.1
+IPv4DefaultGateway : 
+DNSServer          : fec0:0:0:ffff::1, fec0:0:0:ffff::2, fec0:0:0:ffff::3
+MacAddress         : 0A-00-27-00-00-05
+
+Adapter Name       : Wi-Fi
+InterfaceAlias     : Wi-Fi
+IPv4Address        : 10.96.249.181
+IPv4DefaultGateway : 10.96.249.78
+DNSServer          : 2402:8100:2746:afd0::18, 10.96.249.78
+MacAddress         : 3C-55-76-60-0B-43","LocalAddress  LocalPort OwningProcess  State
+------------  --------- -------------  -----
+::                  135          1640 Listen
+0.0.0.0             135          1640 Listen
+192.168.56.1        139             4 Listen
+10.96.249.181       139             4 Listen
+::                  445             4 Listen
+0.0.0.0            5040          8852 Listen
+127.0.0.1          5939          5136 Listen
+::                 7680         13140 Listen
+127.0.0.1         19293          8948 Listen
+127.0.0.1         19294          8948 Listen
+0.0.0.0           49664          1320 Listen
+::                49664          1320 Listen
+0.0.0.0           49665          1144 Listen
+::                49665          1144 Listen
+::                49666          2280 Listen
+0.0.0.0           49666          2280 Listen
+::                49667          2124 Listen
+0.0.0.0           49667          2124 Listen
+::                49668          4368 Listen
+0.0.0.0           49668          4368 Listen
+::                49669          1292 Listen
+0.0.0.0           49669          1292 Listen","LocalAddress                          LocalPort RemoteAddress                      RemotePort OwningProcess       State
+------------                          --------- -------------                      ---------- -------------       -----
+2402:8100:2746:afd0:4c9:c07c:67c4:f05     65440 64:ff9b::6812:202f                        443             0    TimeWait
+2402:8100:2746:afd0:4c9:c07c:67c4:f05     65431 64:ff9b::6812:202f                        443             0    TimeWait
+2402:8100:2746:afd0:4c9:c07c:67c4:f05     65426 64:ff9b::d6b:69e                          443             0    TimeWait
+10.96.249.181                             65413 20.189.173.1                              443             0    TimeWait
+2402:8100:2746:afd0:4c9:c07c:67c4:f05     65450 64:ff9b::d6b:69e                          443             0    TimeWait
+2402:8100:2746:afd0:4c9:c07c:67c4:f05     65449 2603:1040:a06:8::1f1                      443             0    TimeWait
+2402:8100:2746:afd0:4c9:c07c:67c4:f05     65444 64:ff9b::348a:e542                        443             0    TimeWait
+2402:8100:2746:afd0:4c9:c07c:67c4:f05     65389 64:ff9b::14bd:ad01                        443             0    TimeWait
+10.96.249.181                             65434 104.18.32.47                              443             0    TimeWait
+10.96.249.181                             65417 104.21.80.1                               443             0    TimeWait
+2402:8100:2746:afd0:4c9:c07c:67c4:f05     65402 2404:6800:4009:810::200e                  443             0    TimeWait
+2402:8100:2746:afd0:4c9:c07c:67c4:f05     65425 2603:1040:a06:8::1f1                      443             0    TimeWait
+2402:8100:2746:afd0:4c9:c07c:67c4:f05     65423 2603:1040:a06:8::1f1                      443             0    TimeWait
+2402:8100:2746:afd0:4c9:c07c:67c4:f05     65418 2606:4700:4400::ac40:9bd1                 443             0    TimeWait
+2402:8100:2746:afd0:4c9:c07c:67c4:f05     65466 2620:1ec:22::16                           443             0    TimeWait
+2402:8100:2746:afd0:4c9:c07c:67c4:f05     65441 64:ff9b::6812:202f                        443             0    TimeWait
+::                                        65367 ::                                          0          4932       Bound
+::                                        65368 ::                                          0          4932       Bound
+::                                        65365 ::                                          0          4932       Bound
+2402:8100:2746:afd0:4c9:c07c:67c4:f05     65463 64:ff9b::347b:800e                        443          5076 Established
+::                                        65463 ::                                          0          5076       Bound
+2402:8100:2746:afd0:4c9:c07c:67c4:f05     65112 64:ff9b::4d5:19f0                         443          5256 Established
+::                                        65112 ::                                          0          5256       Bound
+::                                        65116 ::                                          0          5256       Bound
+2402:8100:2746:afd0:4c9:c07c:67c4:f05     65116 64:ff9b::4d5:19f0                         443          5256 Established
+0.0.0.0                                   64045 0.0.0.0                                     0          6220       Bound
+0.0.0.0                                   64046 0.0.0.0                                     0          6220       Bound
+2402:8100:2746:afd0:4c9:c07c:67c4:f05     65122 2603:1040:5:3::16                         443          7012 Established
+::                                        65122 ::                                          0          7012       Bound
+::                                        65393 ::                                          0         11420       Bound
+2402:8100:2746:afd0:4c9:c07c:67c4:f05     65393 2a03:2880:f288:ca:face:b00c:0:7260         80         11420 Established
+2402:8100:2746:afd0:4c9:c07c:67c4:f05     65131 2404:6800:4003:c02::bc                   5228         14476 Established
+::                                        65464 ::                                          0         14476       Bound
+::                                        65360 ::                                          0         14476       Bound
+::                                        65359 ::                                          0         14476       Bound
+::                                        65131 ::                                          0         14476       Bound
+2402:8100:2746:afd0:4c9:c07c:67c4:f05     65464 2404:6800:4009:828::2004                  443         14476 Established
+::                                        65401 ::                                          0         14476       Bound
+2402:8100:2746:afd0:4c9:c07c:67c4:f05     65401 2404:6800:4009:810::200e                  443         14476 Established
+2402:8100:2746:afd0:4c9:c07c:67c4:f05     65445 64:ff9b::348a:e542                        443         17632    FinWait1
+::                                        65128 ::                                          0         17632       Bound
+2402:8100:2746:afd0:4c9:c07c:67c4:f05     65428 64:ff9b::348a:e542                        443         17632    FinWait1
+2402:8100:2746:afd0:4c9:c07c:67c4:f05     65128 64:ff9b::acbc:d799                        443         17632 Established","AMProductVersion          : 4.18.25050.5
+AMServiceVersion          : 4.18.25050.5
+AntivirusSignatureVersion : 1.431.683.0
+AntivirusEnabled          : True
+RealTimeProtectionEnabled : True
+ProductStatus             : 524288"

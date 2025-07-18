@@ -1,0 +1,175 @@
+﻿--- System Information ---
+
+
+
+OsName                     : Microsoft Windows 11 Home Single Language
+OsVersion                  : 10.0.26100
+OsHardwareAbstractionLayer : 10.0.26100.1
+WindowsProductName         : Windows 10 Home Single Language
+WindowsBuildLabEx          : 26100.1.amd64fre.ge_release.240331-1435
+CsManufacturer             : HP
+CsModel                    : HP Laptop 14s-fq1xxx
+CsTotalPhysicalMemory      : 7866535936
+CsNumberOfProcessors       : 1
+BiosManufacturer           : AMI
+BiosVersion                : HPQOEM - 1072009
+BiosReleaseDate            : 19-07-2024 05:30:00 AM
+
+
+
+
+
+--- CPU Information ---
+
+
+
+Name                      : AMD Ryzen 3 5300U with Radeon Graphics         
+NumberOfCores             : 4
+NumberOfLogicalProcessors : 8
+MaxClockSpeed             : 2600
+L2CacheSize               : 2048
+L3CacheSize               : 4096
+
+
+
+
+
+--- RAM Information ---
+
+
+BankLabel      Capacity ConfiguredClockSpeed DeviceLocator           FormFactor Manufacturer PartNumber           Seria
+                                                                                                                  lNumb
+                                                                                                                  er   
+---------      -------- -------------------- -------------           ---------- ------------ ----------           -----
+P0 CHANNEL B 8589934592                 3200 Bottom - Slot 2 (right)         12 Hynix        HMAG68EXNSA051N      27...
+
+
+
+
+--- Disk Drive Information ---
+
+
+Caption                               Size MediaType             Model                         SerialNumber            
+-------                               ---- ---------             -----                         ------------            
+WD PC SN740 SDDPNQD-512G-1006 512105932800 Fixed hard disk media WD PC SN740 SDDPNQD-512G-1006 E823_8FA6_BF53_0001_0...
+
+
+
+
+
+DeviceID VolumeName FileSystem         Size    FreeSpace
+-------- ---------- ----------         ----    ---------
+C:                  NTFS       240794988544 106486554624
+D:                  NTFS       269484027904 254214836224
+
+
+
+
+--- Network Adapter Details ---
+
+
+Name       InterfaceDescription                    MacAddress        Status LinkSpeed
+----       --------------------                    ----------        ------ ---------
+Ethernet 4 VirtualBox Host-Only Ethernet Adapter   0A-00-27-00-00-12 Up     1 Gbps   
+Wi-Fi      Realtek RTL8821CE 802.11ac PCIe Adapter 14-D4-24-CA-4A-F5 Up     90 Mbps  
+
+
+
+
+--- IP Configuration (Detailed) ---
+
+Adapter Name       : Ethernet 4
+InterfaceAlias     : Ethernet 4
+IPv4Address        : 192.168.25.1
+IPv4DefaultGateway : 
+DNSServer          : fec0:0:0:ffff::1, fec0:0:0:ffff::2, fec0:0:0:ffff::3
+MacAddress         : 0A-00-27-00-00-12
+
+Adapter Name       : Wi-Fi
+InterfaceAlias     : Wi-Fi
+IPv4Address        : 10.120.9.76
+IPv4DefaultGateway : 10.120.8.1
+DNSServer          : 10.124.4.18, 10.124.4.23, 8.8.8.8
+MacAddress         : 14-D4-24-CA-4A-F5
+
+--- Active Network Connections (Open Ports from Host Perspective) ---
+
+
+LocalAddress LocalPort OwningProcess  State
+------------ --------- -------------  -----
+::                 135          1564 Listen
+0.0.0.0            135          1564 Listen
+192.168.25.1       139             4 Listen
+10.120.9.76        139             4 Listen
+::                 445             4 Listen
+0.0.0.0           5040          4796 Listen
+::                7680          9952 Listen
+0.0.0.0          49664          1280 Listen
+::               49664          1280 Listen
+0.0.0.0          49665          1080 Listen
+::               49665          1080 Listen
+0.0.0.0          49666          2368 Listen
+::               49666          2368 Listen
+::               49667          3592 Listen
+0.0.0.0          49667          3592 Listen
+::               49668          4792 Listen
+0.0.0.0          49668          4792 Listen
+::               49669          1164 Listen
+0.0.0.0          49669          1164 Listen
+
+
+
+
+
+LocalAddress LocalPort RemoteAddress   RemotePort OwningProcess       State
+------------ --------- -------------   ---------- -------------       -----
+10.120.9.76      58102 8.8.8.8                443             0    TimeWait
+10.120.9.76      58099 13.89.179.14           443             0    TimeWait
+10.120.9.76      58103 54.192.142.25          443             0    TimeWait
+10.120.9.76      58091 8.8.4.4                443             0    TimeWait
+10.120.9.76      58080 40.74.81.198           443             0    TimeWait
+10.120.9.76      58098 8.8.4.4                443             0    TimeWait
+10.120.9.76      58088 8.8.8.8                443             0    TimeWait
+10.120.9.76      58081 4.241.155.66           443             0    TimeWait
+0.0.0.0          58444 0.0.0.0                  0           712       Bound
+10.120.9.76      58444 4.195.15.137           443           712 Established
+10.120.9.76      58079 40.126.17.135          443          4424 Established
+10.120.9.76      58092 40.126.17.135          443          4424 Established
+0.0.0.0          58092 0.0.0.0                  0          4424       Bound
+0.0.0.0          58079 0.0.0.0                  0          4424       Bound
+0.0.0.0          58393 0.0.0.0                  0          5384       Bound
+10.120.9.76      58393 4.213.25.242           443          5384 Established
+0.0.0.0          60186 0.0.0.0                  0         17116       Bound
+10.120.9.76      63403 142.250.192.138        443         17116 Established
+0.0.0.0          63403 0.0.0.0                  0         17116       Bound
+10.120.9.76      60186 142.251.12.188         443         17116 Established
+0.0.0.0          63254 0.0.0.0                  0         17536       Bound
+10.120.9.76      63255 23.45.207.91           443         17536   CloseWait
+0.0.0.0          63255 0.0.0.0                  0         17536       Bound
+10.120.9.76      63254 184.84.248.19          443         17536   CloseWait
+10.120.9.76      58075 31.13.79.54             80         18712 Established
+0.0.0.0          58075 0.0.0.0                  0         18712       Bound
+10.120.9.76      58105 52.98.57.162           443         20884 Established
+10.120.9.76      58107 52.98.57.162           443         20884 Established
+0.0.0.0          58105 0.0.0.0                  0         20884       Bound
+0.0.0.0          58107 0.0.0.0                  0         20884       Bound
+
+
+
+
+--- Antivirus Status (Windows Defender) ---
+
+
+
+AMProductVersion          : 4.18.25060.7
+AMServiceVersion          : 4.18.25060.7
+AntivirusSignatureVersion : 1.431.685.0
+AntivirusEnabled          : True
+RealTimeProtectionEnabled : True
+ProductStatus             : 524288
+
+
+
+
+
+--- Script Completed ---

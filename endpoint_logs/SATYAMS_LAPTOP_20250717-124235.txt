@@ -1,0 +1,234 @@
+﻿--- System Information ---
+
+
+
+OsName                     : Microsoft Windows 11 Home Single Language
+OsVersion                  : 10.0.26100
+OsHardwareAbstractionLayer : 10.0.26100.1
+WindowsProductName         : Windows 10 Home Single Language
+WindowsBuildLabEx          : 26100.1.amd64fre.ge_release.240331-1435
+CsManufacturer             : HP
+CsModel                    : HP Laptop 15s-dr2xxx
+CsTotalPhysicalMemory      : 8361132032
+CsNumberOfProcessors       : 1
+BiosManufacturer           : Insyde
+BiosVersion                : HPQOEM - 2
+BiosReleaseDate            : 15-10-2021 05:30:00
+
+
+
+
+
+--- CPU Information ---
+
+
+
+Name                      : Intel(R) Core(TM) i5-1035G1 CPU @ 1.00GHz
+NumberOfCores             : 4
+NumberOfLogicalProcessors : 8
+MaxClockSpeed             : 1190
+L2CacheSize               : 2048
+L3CacheSize               : 6144
+
+
+
+
+
+--- RAM Information ---
+
+
+BankLabel   Capacity ConfiguredClockSpeed DeviceLocator       FormFactor Manufacturer PartNumber           SerialNumber
+---------   -------- -------------------- -------------       ---------- ------------ ----------           ------------
+BANK 0    8589934592                 2667 Bottom-Slot 1(left)         12 Samsung      M471A1K43CB1-CTD     37AD7B7F    
+
+
+
+
+--- Disk Drive Information ---
+
+
+Caption                                Size MediaType             Model                          SerialNumber          
+-------                                ---- ---------             -----                          ------------          
+WDC PC SN520 SDAPNUW-256G-1006 256052966400 Fixed hard disk media WDC PC SN520 SDAPNUW-256G-1006 E823_8FA6_BF53_0001...
+
+
+
+
+
+DeviceID VolumeName FileSystem         Size   FreeSpace
+-------- ---------- ----------         ----   ---------
+C:       Windows    NTFS       254443302912 58848837632
+
+
+
+
+--- Network Adapter Details ---
+
+
+Name       InterfaceDescription                  MacAddress        Status       LinkSpeed
+----       --------------------                  ----------        ------       ---------
+Ethernet 3 VirtualBox Host-Only Ethernet Adapter 0A-00-27-00-00-11 Up           1 Gbps   
+Ethernet 2 ExpressVPN TAP Adapter                00-FF-73-0C-0C-FB Disconnected 1 Gbps   
+Ethernet   Realtek PCIe GbE Family Controller    BC-E9-2F-BF-E4-77 Disconnected 0 bps    
+WiFi       Intel(R) Wi-Fi 6 AX201 160MHz         8C-C6-81-96-B0-40 Up           344 Mbps 
+
+
+
+
+--- IP Configuration (Detailed) ---
+
+Adapter Name       : Ethernet 3
+InterfaceAlias     : Ethernet 3
+IPv4Address        : 192.168.56.1
+IPv4DefaultGateway : 
+DNSServer          : 
+MacAddress         : 0A-00-27-00-00-11
+
+Adapter Name       : Ethernet 2
+InterfaceAlias     : Ethernet 2
+IPv4Address        : 169.254.131.155
+IPv4DefaultGateway : 
+DNSServer          : 
+MacAddress         : 00-FF-73-0C-0C-FB
+
+Adapter Name       : Ethernet
+InterfaceAlias     : Ethernet
+IPv4Address        : 169.254.163.172
+IPv4DefaultGateway : 
+DNSServer          : 192.168.29.1
+MacAddress         : BC-E9-2F-BF-E4-77
+
+Adapter Name       : WiFi
+InterfaceAlias     : WiFi
+IPv4Address        : 10.120.9.31
+IPv4DefaultGateway : 10.120.8.1
+DNSServer          : 10.124.4.18, 10.124.4.23, 8.8.8.8
+MacAddress         : 8C-C6-81-96-B0-40
+
+--- Active Network Connections (Open Ports from Host Perspective) ---
+
+
+LocalAddress LocalPort OwningProcess  State
+------------ --------- -------------  -----
+::                 135          1480 Listen
+0.0.0.0            135          1480 Listen
+192.168.56.1       139             4 Listen
+10.120.9.31        139             4 Listen
+::                 445             4 Listen
+127.0.0.1         2015          5924 Listen
+0.0.0.0           5040          6856 Listen
+::                7680         11664 Listen
+127.0.0.1        10533         16364 Listen
+::               49664          1080 Listen
+0.0.0.0          49664          1080 Listen
+::               49665           608 Listen
+0.0.0.0          49665           608 Listen
+0.0.0.0          49666          2820 Listen
+::               49666          2820 Listen
+::               49667          3212 Listen
+0.0.0.0          49667          3212 Listen
+::               49668          5040 Listen
+0.0.0.0          49668          5040 Listen
+::               49669          5908 Listen
+0.0.0.0          49669          5908 Listen
+::1              49670          6768 Listen
+::               49671          1052 Listen
+0.0.0.0          49671          1052 Listen
+
+
+
+
+
+LocalAddress LocalPort RemoteAddress   RemotePort OwningProcess       State
+------------ --------- -------------   ---------- -------------       -----
+10.120.9.31       7680 10.120.10.61         59393             0    TimeWait
+10.120.9.31       7680 10.120.9.179         62177             0    TimeWait
+10.120.9.31      63459 10.120.9.178          7680             0    TimeWait
+10.120.9.31      63436 57.144.177.32          443             0    TimeWait
+10.120.9.31       7680 10.120.9.179         62165             0    TimeWait
+10.120.9.31       7680 10.120.8.201         65086             0    TimeWait
+10.120.9.31       7680 10.120.9.114         64711             0    TimeWait
+10.120.9.31       7680 10.120.9.17          56987             0    TimeWait
+10.120.9.31       7680 10.120.9.85          57500             0    TimeWait
+10.120.9.31       7680 10.120.9.179         62196             0    TimeWait
+10.120.9.31       7680 10.120.9.114         64732             0    TimeWait
+10.120.9.31       7680 10.120.9.114         64721             0    TimeWait
+0.0.0.0          55131 0.0.0.0                  0          6056       Bound
+10.120.9.31      55131 4.145.79.81            443          6056 Established
+10.120.9.31      63433 142.250.70.67          443          8876 Established
+10.120.9.31      63463 142.251.42.234         443          8876 Established
+10.120.9.31      63445 142.250.207.163        443          8876 Established
+10.120.9.31      63444 180.149.52.98          443          8876 Established
+10.120.9.31      63373 142.250.192.46         443          8876 Established
+10.120.9.31      63427 8.8.4.4                443          8876 Established
+10.120.9.31      63330 142.250.70.46          443          8876 Established
+10.120.9.31      63435 172.253.118.84         443          8876 Established
+10.120.9.31      49866 31.13.79.53            443          8876 Established
+10.120.9.31      63431 104.20.19.83           443          8876 Established
+10.120.9.31      63432 104.19.195.29          443          8876 Established
+10.120.9.31      63430 104.17.25.14           443          8876 Established
+10.120.9.31      63428 142.251.220.33         443          8876 Established
+10.120.9.31      63429 142.250.70.74          443          8876 Established
+10.120.9.31      63464 142.251.42.234         443          8876 Established
+0.0.0.0          63432 0.0.0.0                  0          8876       Bound
+0.0.0.0          63464 0.0.0.0                  0          8876       Bound
+0.0.0.0          63430 0.0.0.0                  0          8876       Bound
+0.0.0.0          63428 0.0.0.0                  0          8876       Bound
+0.0.0.0          63429 0.0.0.0                  0          8876       Bound
+0.0.0.0          63445 0.0.0.0                  0          8876       Bound
+0.0.0.0          63463 0.0.0.0                  0          8876       Bound
+0.0.0.0          63444 0.0.0.0                  0          8876       Bound
+0.0.0.0          63433 0.0.0.0                  0          8876       Bound
+0.0.0.0          63435 0.0.0.0                  0          8876       Bound
+0.0.0.0          63431 0.0.0.0                  0          8876       Bound
+0.0.0.0          49866 0.0.0.0                  0          8876       Bound
+0.0.0.0          63330 0.0.0.0                  0          8876       Bound
+0.0.0.0          63373 0.0.0.0                  0          8876       Bound
+0.0.0.0          63427 0.0.0.0                  0          8876       Bound
+10.120.9.31      63442 23.55.39.8             443         11196 Established
+0.0.0.0          63442 0.0.0.0                  0         11196       Bound
+0.0.0.0          55949 0.0.0.0                  0         11196       Bound
+10.120.9.31      55949 52.98.88.66            443         11196 Established
+0.0.0.0          57478 0.0.0.0                  0         11196       Bound
+10.120.9.31      57478 52.98.34.194           443         11196 Established
+10.120.9.31       7680 10.120.9.5           51734         11664 Established
+10.120.9.31       7680 10.120.9.114         64544         11664 Established
+10.120.9.31       7680 10.120.10.61         59221         11664 Established
+10.120.9.31       7680 10.120.10.217        64437         11664 Established
+10.120.9.31       7680 10.120.9.44          54014         11664 Established
+10.120.9.31       7680 10.120.10.30         63384         11664 Established
+10.120.9.31       7680 10.120.9.162          4680         11664 Established
+::               63352 ::                       0         11664       Bound
+10.120.9.31      63352 10.120.10.77          7680         11664 Established
+10.120.9.31       7680 10.120.9.108         57943         11664 Established
+10.120.9.31       7680 10.120.10.84         52910         11664 Established
+10.120.9.31       7680 10.120.10.111        39908         11664 Established
+0.0.0.0          55961 0.0.0.0                  0         18372       Bound
+10.120.9.31      64748 23.42.182.155          443         21528 Established
+0.0.0.0          64748 0.0.0.0                  0         21528       Bound
+0.0.0.0          53248 0.0.0.0                  0         23016       Bound
+10.120.9.31      53248 54.95.167.22           443         23016 Established
+0.0.0.0          63465 0.0.0.0                  0         27384       Bound
+10.120.9.31      63465 40.119.213.159         443         27384 Established
+10.120.9.31      63466 185.125.190.29         443         33072 Established
+0.0.0.0          63466 0.0.0.0                  0         33072       Bound
+
+
+
+
+--- Antivirus Status (Windows Defender) ---
+
+
+
+AMProductVersion          : 4.18.25050.5
+AMServiceVersion          : 4.18.25050.5
+AntivirusSignatureVersion : 1.431.682.0
+AntivirusEnabled          : True
+RealTimeProtectionEnabled : True
+ProductStatus             : 524288
+
+
+
+
+
+--- Script Completed ---
