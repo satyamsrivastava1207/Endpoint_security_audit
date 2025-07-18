@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Audit Viewer</title>
+    <!-- Add Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary-color: #0078D4;
+            --primary-hover: #106EBE;
+            --success-color: #107C10;
+            --danger-color: #D83B01;
+            --warning-color: #F7A300;
+            
+            --bg-light: #F5F5F5;
+            --surface-light: #FFFFFF;
+            --border-light: #E1E1E1;
+            --text-primary-light: #201F1E;
+            --text-secondary-light: #605E5C;
+            
+            --bg-dark: #1F1F1F;
+            --surface-dark: #2D2D2D;
+            --border-dark: #4A4A4A;
+            --text-primary-dark: #F5F5F5;
+            --text-secondary-dark: #A19F9D;
+            
+            --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: var(--font-family);
+            margin: 0;
+            padding: 1.5rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* --- THEME STYLES --- */
+        body { background-color: var(--bg-light); color: var(--text-primary-light); }
+        .container, .host-details, .stat-card, .chart-container { background-color: var(--surface-light); }
+        .host-item, .filters input, .filters select { border: 1px solid var(--border-light); }
+        .host-header { border-bottom: 1px solid var(--border-light); }
+        .detail-section pre { background-color: var(--bg-light); }
+        .host-header h2, .detail-section h3 { color: var(--text-primary-light); }
+        .host-header .os-info, .dashboard-header p, .stat-card .label { color: var(--text-secondary-light); }
+        .theme-switch-wrapper .icon.sun { color: var(--text-primary-light); }
+        .theme-switch-wrapper .icon.moon { color: var(--text-secondary-light); }
+
+        body.dark-mode { background-color: var(--bg-dark); color: var(--text-primary-dark); }
+        body.dark-mode .container, body.dark-mode .host-details, body.dark-mode .stat-card, body.dark-mode .chart-container { background-color: var(--surface-dark); }
+        body.dark-mode .host-item, body.dark-mode .filters input, body.dark-mode .filters select, body.dark-mode .host-header { border-color: var(--border-dark); }
+        body.dark-mode .detail-section pre { background-color: var(--bg-dark); }
+        body.dark-mode .host-header h2, body.dark-mode .detail-section h3 { color: var(--text-primary-dark); }
+        body.dark-mode .host-header .os-info, body.dark-mode .dashboard-header p, body.dark-mode .stat-card .label { color: var(--text-secondary-dark); }
+        body.dark-mode .host-header:hover { background-color: #3a3a3a; }
+        body.dark-mode .theme-switch-wrapper .icon.sun { color: var(--text-secondary-dark); }
+        body.dark-mode .theme-switch-wrapper .icon.moon { color: var(--text-primary-dark); }
+
+        /* --- GENERAL LAYOUT --- */
+        .container { max-width: 1400px; padding: 2rem; border-radius: var(--border-radius); box-shadow: var(--shadow); }
+        #uploader-view { text-align: center; }
+        #dashboard-view { display: none; }
+        .dashboard-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; margin-bottom: 1.5rem; }
+        .dashboard-header h1 { margin: 0; }
+
+        /* --- HUD --- */
+        .hud-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+        .stat-card { padding: 1.5rem; border-radius: var(--border-radius); box-shadow: var(--shadow); }
+        .stat-card .value { font-size: 2.5rem; font-weight: 600; color: var(--primary-color); }
+        .stat-card .label { font-size: 1rem; margin-top: 0.5rem; }
+        .charts-section { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+        .chart-container { padding: 1.5rem; border-radius: var(--border-radius); box-shadow: var(--shadow); }
+        .chart-container h3 { margin-top: 0; }
+
+        /* --- FILTERS & HOST LIST --- */
+        .filters { display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .filters input, .filters select { padding: 0.75rem; font-size: 1rem; border-radius: 4px; background-color: transparent; color: inherit; }
+        .filters .hostname-filter { flex-grow: 2; }
+        .filters .select-filter { flex-grow: 1; }
+        .host-list { max-height: 70vh; overflow-y: auto; }
+        .host-item { margin-bottom: 1rem; border-radius: var(--border-radius); box-shadow: var(--shadow); overflow: hidden; }
+        .host-header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; cursor: pointer; }
+        .host-header:hover { background-color: #fafafa; }
+        .host-header h2 { font-size: 1.2rem; margin: 0; display: flex; align-items: center; gap: 0.5rem; }
+        .host-summary { display: flex; gap: 1rem; align-items: center; font-size: 0.9rem; }
+        .summary-item { display: flex; align-items: center; gap: 0.5rem; padding: 0.3rem 0.6rem; border-radius: 1rem; }
+        .summary-item.av-enabled { background-color: var(--success-color); color: white; }
+        .summary-item.av-disabled { background-color: var(--danger-color); color: white; }
+        .arrow { font-size: 1.5rem; transition: transform 0.3s ease; }
+        .host-item.active .arrow { transform: rotate(90deg); }
+        .host-details { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out, padding 0.4s ease-out; }
+        .host-item.active .host-details { max-height: 80vh; overflow-y: auto; padding: 0 1.5rem 1.5rem 1.5rem; }
+        .detail-section h3 { color: var(--primary-color); margin: 1.5rem 0 1rem 0; border-bottom: 2px solid var(--primary-color); padding-bottom: 0.5rem; }
+        .detail-section pre { padding: 1rem; border-radius: 5px; white-space: pre-wrap; word-wrap: break-word; font-family: "Consolas", "Monaco", monospace; font-size: 0.9rem; }
+        .no-results { text-align: center; padding: 3rem; font-size: 1.2rem; }
+        
+        /* --- NEW STYLES FOR INDICATORS --- */
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-left: 0.25rem;
+        }
+        .status-indicator.green { background-color: var(--success-color); }
+        .status-indicator.yellow { background-color: var(--warning-color); }
+        .status-indicator.red { background-color: var(--danger-color); }
+
+        .av-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.3rem 0.7rem;
+            border-radius: 1rem;
+            font-weight: 500;
+            color: white;
+        }
+        .av-badge.enabled { background-color: var(--success-color); }
+        .av-badge.warning { background-color: var(--warning-color); }
+        .av-badge.disabled { background-color: var(--danger-color); }
+        .av-badge .icon { width: 14px; height: 14px; }
+
+        /* --- THEME TOGGLE --- */
+        .theme-switch-wrapper { display: flex; align-items: center; gap: 0.5rem; }
+        .theme-switch { display: inline-block; height: 24px; position: relative; width: 50px; }
+        .theme-switch input { display: none; }
+        .slider { background-color: #ccc; bottom: 0; cursor: pointer; left: 0; position: absolute; right: 0; top: 0; transition: .4s; border-radius: 24px; }
+        .slider:before { background-color: #fff; bottom: 4px; content: ""; height: 16px; left: 4px; position: absolute; transition: .4s; width: 16px; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--primary-color); }
+        input:checked + .slider:before { transform: translateX(26px); }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- VIEW 1: Uploader -->
+        <div id="uploader-view">
+            <h1>System Audit Dashboard</h1>
+            <p>To begin, please upload your <strong>Master_Log_...csv</strong> file.</p>
+            <input type="file" id="file-input" accept=".csv">
+            <label for="file-input" class="drop-zone" id="drop-zone">
+                <p class="drop-zone-text">Drag & drop your CSV file here or <span>browse files</span>.</p>
+            </label>
+        </div>
+
+        <!-- VIEW 2: Dashboard -->
+        <div id="dashboard-view">
+            <div class="dashboard-header">
+                <div>
+                    <h1>System Report Viewer</h1>
+                    <p>Loaded from <strong id="source-filename"></strong></p>
+                </div>
+                <div class="theme-switch-wrapper">
+                    <svg class="icon sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                    <label class="theme-switch" for="theme-checkbox"><input type="checkbox" id="theme-checkbox" /><div class="slider"></div></label>
+                    <svg class="icon moon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+                </div>
+            </div>
+
+            <!-- HUD Section -->
+            <div class="hud-section">
+                <div class="stat-card"><div class="value" id="total-hosts-stat">0</div><div class="label">Total Hosts</div></div>
+                <div class="stat-card"><div class="value" id="av-coverage-stat">0%</div><div class="label">AV Coverage</div></div>
+                <div class="stat-card"><div class="value" id="avg-ram-stat">0 GB</div><div class="label">Average RAM</div></div>
+                <div class="stat-card"><div class="value" id="top-os-stat">N/A</div><div class="label">Top Operating System</div></div>
+            </div>
+            <div class="charts-section">
+                <div class="chart-container"><h3>OS Distribution</h3><canvas id="os-chart"></canvas></div>
+                <div class="chart-container"><h3>Antivirus Status</h3><canvas id="av-chart"></canvas></div>
+            </div>
+
+            <!-- Filters and Host List -->
+            <div class="filters">
+                <input type="text" id="hostname-filter" class="hostname-filter" placeholder="Filter by Hostname...">
+                <select id="os-filter" class="select-filter"></select>
+                <select id="av-filter" class="select-filter">
+                    <option value="">All Antivirus Status</option>
+                    <option value="enabled">AV Enabled</option>
+                    <option value="disabled">AV Disabled</option>
+                </select>
+            </div>
+            <div class="host-list" id="host-list"></div>
+        </div>
+    </div>
+
+    <script>
+        // --- DOM Element References ---
+        const uploaderView = document.getElementById('uploader-view');
+        const dashboardView = document.getElementById('dashboard-view');
+        const dropZone = document.getElementById('drop-zone');
+        const fileInput = document.getElementById('file-input');
+        const sourceFilenameEl = document.getElementById('source-filename');
+        const hostnameFilterEl = document.getElementById('hostname-filter');
+        const osFilterEl = document.getElementById('os-filter');
+        const avFilterEl = document.getElementById('av-filter');
+        const themeToggle = document.getElementById('theme-checkbox');
+        const hostListEl = document.getElementById('host-list');
+
+        // --- HUD References ---
+        const totalHostsStat = document.getElementById('total-hosts-stat');
+        const avCoverageStat = document.getElementById('av-coverage-stat');
+        const avgRamStat = document.getElementById('avg-ram-stat');
+        const topOsStat = document.getElementById('top-os-stat');
+        const osChartCanvas = document.getElementById('os-chart');
+        const avChartCanvas = document.getElementById('av-chart');
+        let osChart, avChart;
+
+        // --- Application State ---
+        let allDevices = [];
+
+        // --- Event Listeners ---
+        dropZone.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', () => handleFileSelect(fileInput.files));
+        dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+        ['dragleave', 'dragend'].forEach(type => { dropZone.addEventListener(type, () => dropZone.classList.remove('drag-over')); });
+        dropZone.addEventListener('drop', (e) => { e.preventDefault(); dropZone.classList.remove('drag-over'); handleFileSelect(e.dataTransfer.files); });
+        
+        hostnameFilterEl.addEventListener('keyup', applyFilters);
+        osFilterEl.addEventListener('change', applyFilters);
+        avFilterEl.addEventListener('change', applyFilters);
+
+        themeToggle.addEventListener('change', () => {
+            document.body.classList.toggle('dark-mode', themeToggle.checked);
+            localStorage.setItem('theme', themeToggle.checked ? 'dark' : 'light');
+            updateChartColors();
+        });
+
+        function applySavedTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                themeToggle.checked = true;
+            }
+        }
+
+        // --- Core Functions ---
+        function handleFileSelect(files) {
+            if (!files || files.length === 0) return;
+            const file = files[0];
+            sourceFilenameEl.textContent = file.name;
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                try {
+                    allDevices = parseCSV(event.target.result);
+                    if (allDevices.length > 0) initializeDashboard();
+                    else alert('Could not parse any data from the CSV.');
+                } catch (error) { console.error(error); alert("An error occurred while reading the file."); }
+            };
+            reader.readAsText(file);
+        }
+        
+        function parseCSV(csvText) {
+            const rows = [];
+            let inQuotes = false, record = [], field = '';
+            for (let i = 0; i < csvText.length; i++) {
+                const char = csvText[i];
+                if (inQuotes) {
+                    if (char === '"' && csvText[i + 1] === '"') { field += '"'; i++; } 
+                    else if (char === '"') { inQuotes = false; } 
+                    else { field += char; }
+                } else {
+                    if (char === '"') { inQuotes = true; } 
+                    else if (char === ',') { record.push(field); field = ''; } 
+                    else if (char === '\n' || char === '\r') {
+                        if (i > 0 && csvText[i - 1] !== '\n' && csvText[i - 1] !== '\r') {
+                            record.push(field); field = ''; rows.push(record); record = [];
+                        }
+                    } else { field += char; }
+                }
+            }
+            if (field || record.length > 0) { record.push(field); rows.push(record); }
+            if (rows.length < 2) return [];
+            const headers = rows[0].map(h => h.trim());
+            const data = [];
+            for (let i = 1; i < rows.length; i++) {
+                if (rows[i].length === headers.length) {
+                    const obj = {};
+                    headers.forEach((h, j) => obj[h] = rows[i][j]);
+                    data.push(obj);
+                }
+            }
+            return data;
+        }
+
+        function initializeDashboard() {
+            uploaderView.style.display = 'none';
+            dashboardView.style.display = 'block';
+            populateHud();
+            populateFilters();
+            renderHostList(allDevices);
+        }
+
+        function populateHud() {
+            const total = allDevices.length;
+            let avEnabledCount = 0;
+            let totalRam = 0;
+            const osCounts = {};
+
+            allDevices.forEach(device => {
+                if (parseInfo(device.Antivirus_Status, /AntivirusEnabled\s*:\s*(True)/i) !== 'N/A') {
+                    avEnabledCount++;
+                }
+                const ramBytes = parseInfo(device.System_Information, /CsTotalPhysicalMemory\s*:\s*(\d+)/);
+                if (ramBytes !== 'N/A') {
+                    totalRam += Number(ramBytes);
+                }
+                const osName = parseInfo(device.System_Information, /WindowsProductName\s*:\s*(.*)/);
+                if (osName !== 'N/A') {
+                    osCounts[osName] = (osCounts[osName] || 0) + 1;
+                }
+            });
+
+            totalHostsStat.textContent = total;
+            avCoverageStat.textContent = total > 0 ? `${((avEnabledCount / total) * 100).toFixed(0)}%` : '0%';
+            avgRamStat.textContent = total > 0 ? `${(totalRam / total / 1024 / 1024 / 1024).toFixed(1)} GB` : '0 GB';
+            const topOs = Object.keys(osCounts).length > 0 ? Object.entries(osCounts).sort((a, b) => b[1] - a[1])[0][0] : 'N/A';
+            topOsStat.textContent = topOs;
+
+            createOSChart(osCounts);
+            createAVChart(avEnabledCount, total - avEnabledCount);
+        }
+
+        function createOSChart(osCounts) {
+            if (osChart) osChart.destroy();
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            osChart = new Chart(osChartCanvas, {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(osCounts),
+                    datasets: [{
+                        data: Object.values(osCounts),
+                        backgroundColor: ['#0078D4', '#107C10', '#F7A300', '#D83B01', '#7719AA'],
+                        borderColor: isDarkMode ? '#2D2D2D' : '#FFFFFF',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: { legend: { position: 'top', labels: { color: isDarkMode ? '#F5F5F5' : '#201F1E' } } }
+                }
+            });
+        }
+
+        function createAVChart(enabled, disabled) {
+            if (avChart) avChart.destroy();
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            const gridColor = isDarkMode ? 'rgba(245, 245, 245, 0.1)' : 'rgba(32, 31, 30, 0.1)';
+            const textColor = isDarkMode ? '#F5F5F5' : '#201F1E';
+            avChart = new Chart(avChartCanvas, {
+                type: 'bar',
+                data: {
+                    labels: ['Status'],
+                    datasets: [
+                        { label: 'Enabled', data: [enabled], backgroundColor: '#107C10' },
+                        { label: 'Disabled', data: [disabled], backgroundColor: '#D83B01' }
+                    ]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    scales: {
+                        x: { stacked: true, ticks: { color: textColor }, grid: { color: gridColor } },
+                        y: { stacked: true, ticks: { color: textColor }, grid: { color: gridColor } }
+                    },
+                    plugins: { legend: { position: 'top', labels: { color: textColor } } }
+                }
+            });
+        }
+
+        function updateChartColors() {
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            const gridColor = isDarkMode ? 'rgba(245, 245, 245, 0.1)' : 'rgba(32, 31, 30, 0.1)';
+            const textColor = isDarkMode ? '#F5F5F5' : '#201F1E';
+            if (osChart) {
+                osChart.options.plugins.legend.labels.color = textColor;
+                osChart.data.datasets[0].borderColor = isDarkMode ? '#2D2D2D' : '#FFFFFF';
+                osChart.update();
+            }
+            if (avChart) {
+                avChart.options.plugins.legend.labels.color = textColor;
+                avChart.options.scales.x.ticks.color = textColor;
+                avChart.options.scales.y.ticks.color = textColor;
+                avChart.options.scales.x.grid.color = gridColor;
+                avChart.options.scales.y.grid.color = gridColor;
+                avChart.update();
+            }
+        }
+
+        function populateFilters() {
+            const osSet = new Set();
+            allDevices.forEach(device => {
+                const osName = parseInfo(device.System_Information, /WindowsProductName\s*:\s*(.*)/);
+                if (osName && osName !== 'N/A') osSet.add(osName);
+            });
+            osFilterEl.innerHTML = '<option value="">All Operating Systems</option>';
+            Array.from(osSet).sort().forEach(os => {
+                osFilterEl.innerHTML += `<option value="${os}">${os}</option>`;
+            });
+        }
+        
+        function renderHostList(devices) {
+            hostListEl.innerHTML = '';
+            if (devices.length === 0) {
+                hostListEl.innerHTML = `<div class="no-results"><h3>No hosts match the current filters.</h3><p>Try adjusting your search.</p></div>`;
+                return;
+            }
+            devices.forEach(device => {
+                const osName = parseInfo(device.System_Information, /WindowsProductName\s*:\s*(.*)/);
+                const totalRamGB = (Number(parseInfo(device.System_Information, /CsTotalPhysicalMemory\s*:\s*(\d+)/)) / 1024 / 1024 / 1024).toFixed(1) + ' GB';
+                
+                // --- Get status from new helper functions ---
+                const osStatus = getOSStatus(device.System_Information);
+                const avStatus = getAVStatus(device.Antivirus_Status);
+
+                const hostItem = document.createElement('div');
+                hostItem.className = 'host-item';
+                let detailsHTML = '';
+                const detailOrder = ['Timestamp', 'System_Information', 'CPU_Information', 'RAM_Information', 'Disk_Drive_Information', 'Logical_Volume_Information', 'Network_Adapter_Summary', 'IP_Configuration_Detailed', 'Active_Listeners', 'Established_Connections', 'Antivirus_Status'];
+                detailOrder.forEach(key => {
+                    if (device[key]) detailsHTML += `<div class="detail-section"><h3>${escapeHTML(key.replace(/_/g, ' '))}</h3><pre>${escapeHTML(device[key])}</pre></div>`;
+                });
+
+                hostItem.innerHTML = `
+                    <div class="host-header">
+                        <div class="host-title">
+                            <h2>
+                                ${escapeHTML(device.Hostname)} 
+                                <span class="os-tag">${escapeHTML(osName)}</span>
+                                <span class="status-indicator ${osStatus.color}" title="${osStatus.title}"></span>
+                            </h2>
+                        </div>
+                        <div class="host-summary">
+                            <div class="summary-item" title="Antivirus Status">
+                                <span class="av-badge ${avStatus.class}">
+                                    ${avStatus.text}
+                                </span>
+                            </div>
+                            <div class="summary-item" title="Total RAM">🧠 ${totalRamGB}</div>
+                        </div>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="host-details">${detailsHTML}</div>`;
+                hostListEl.appendChild(hostItem);
+            });
+            document.querySelectorAll('.host-header').forEach(header => header.addEventListener('click', () => header.parentElement.classList.toggle('active')));
+        }
+
+        function applyFilters() {
+            const hostnameFilter = hostnameFilterEl.value.toLowerCase();
+            const osFilter = osFilterEl.value;
+            const avFilter = avFilterEl.value;
+            const filteredDevices = allDevices.filter(device => {
+                const hostnameMatch = device.Hostname.toLowerCase().includes(hostnameFilter);
+                const osName = parseInfo(device.System_Information, /WindowsProductName\s*:\s*(.*)/);
+                const osMatch = !osFilter || osName === osFilter;
+                const avStatusRaw = parseInfo(device.Antivirus_Status, /AntivirusEnabled\s*:\s*(True|False)/i);
+                let avStatus = '';
+                if (avStatusRaw.toLowerCase() === 'true') avStatus = 'enabled';
+                if (avStatusRaw.toLowerCase() === 'false') avStatus = 'disabled';
+                const avMatch = !avFilter || avStatus === avFilter;
+                return hostnameMatch && osMatch && avMatch;
+            });
+            renderHostList(filteredDevices);
+        }
+
+        // --- NEW: Risk Indicator Parsers ---
+        function getOSStatus(systemInfo) {
+            const buildDateMatch = parseInfo(systemInfo, /WindowsBuildLabEx\s*:\s*.*?\.(\d{6})-\d{4}/);
+            if (buildDateMatch === 'N/A') return { color: 'yellow', title: 'OS build date unknown' };
+
+            const year = 2000 + parseInt(buildDateMatch.substring(0, 2));
+            const month = parseInt(buildDateMatch.substring(2, 4)) - 1;
+            const day = parseInt(buildDateMatch.substring(4, 6));
+            
+            const buildDate = new Date(year, month, day);
+            const today = new Date();
+            const ageInDays = (today - buildDate) / (1000 * 60 * 60 * 24);
+
+            if (ageInDays > 365) return { color: 'red', title: `OS build is over a year old (${buildDate.toLocaleDateString()})` };
+            if (ageInDays > 180) return { color: 'yellow', title: `OS build is over 6 months old (${buildDate.toLocaleDateString()})` };
+            return { color: 'green', title: `OS build is recent (${buildDate.toLocaleDateString()})` };
+        }
+
+        function getAVStatus(avInfo) {
+            const isEnabled = parseInfo(avInfo, /AntivirusEnabled\s*:\s*(True)/i) !== 'N/A';
+            if (!isEnabled) return { class: 'disabled', text: 'Disabled' };
+
+            const productStatus = parseInfo(avInfo, /ProductStatus\s*:\s*(.*)/);
+            if (productStatus.toLowerCase().includes('uptodate')) {
+                return { class: 'enabled', text: 'Up to date' };
+            }
+            return { class: 'warning', text: 'Out of date' };
+        }
+
+        function parseInfo(text, regex) {
+            if (!text) return 'N/A';
+            const match = text.match(regex);
+            return match && match[1] ? match[1].trim() : 'N/A';
+        }
+
+        function escapeHTML(str) {
+            if (str === null || str === undefined) return '';
+            const p = document.createElement('p');
+            p.appendChild(document.createTextNode(String(str)));
+            return p.innerHTML;
+        }
+
+        applySavedTheme();
+    </script>
+
+</body>
+</html>
